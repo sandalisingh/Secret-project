@@ -1,13 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { createClient } from '@supabase/supabase-js';
-import WishesInALoop from './WishesInALoop';
+import WishesInCollage from './WishesInCollage';
 
 const supabaseUrl = 'https://pxbhnbgbovyzhrxlyvng.supabase.co'; // Add your Supabase URL here
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4YmhuYmdib3Z5emhyeGx5dm5nIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNjYwNDYwMSwiZXhwIjoyMDUyMTgwNjAxfQ.kPQ4f8lfjoIplUq3OKQSrPclbzR4CSBcgrDbTdc2RNM'; // Add your Supabase API Key here
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const App = () => {
+  const [password, setPassword] = useState('');
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+
+  const correctPassword = 'TanAnan#9363#'; // Replace with the desired password
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handlePasswordSubmit = (event) => {
+    event.preventDefault();
+    if (password === correctPassword) {
+      setIsPasswordCorrect(true);
+    } else {
+      alert('Incorrect password');
+    }
+  };
+
   const [wishes, setWishes] = useState([]);
   const [newWish, setNewWish] = useState('');
   const [name, setName] = useState('');
@@ -123,50 +141,63 @@ const App = () => {
 
   return (
     <div className="App">
-      {!isPortalOpen ? <h1>Birthday wishes</h1> :
+      <h2>{timer}<br/>
+        <small style={{fontSize:"0.7rem"}}>until the big day!</small>
+        </h2><br/>
+
+      {isPortalOpen ? <h1>Birthday wishes</h1> :
         <h1>Happy birthday tanuuuu!</h1>
       }
-
-      <h2>{timer}</h2>
-      {!isPortalOpen ? <h5>until the big day!</h5> :
-        null
+      <br />
+      {isPortalOpen ? <h5>{wishes.length} wishes and counting! <br /><br /></h5> :
+        <h5>You have {wishes.length} wishes !<br /><br /></h5>
       }
 
-      {!isPortalOpen ? <h5>{wishes.length} wishes and counting!</h5> :
-        <h5>You have {wishes.length} wishes !</h5>
-      }
-
-      {!isPortalOpen ?
-        <p>Gathering heartfelt wishes, special messages, and fun photos to make Tanu's birthday unforgettable! 💌</p>
-        : null}
-
-      {!isPortalOpen ? (
-        <div>
-          <label>Let us know who you are</label><br />
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          /> <br />
-          <label>Share your warmest wishes and any special message for Tanu</label><br />
-          <input
-            type="text"
-            value={newWish}
-            onChange={(e) => setNewWish(e.target.value)}
-            required
-          /><br />
-          <label>Upload a favorite photo of you with Tanu, or something that reminds you of them!</label><br />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handlePhotoChange}
-          /><br />
-          <button onClick={handleWishSubmit}>Submit Wish</button>
+      {isPortalOpen ? (
+        <div className="form-container">
+          <h3>Gathering heartfelt wishes, special messages, and fun photos to make Tanu's birthday unforgettable! 💌</h3>
+          <br />
+          <div className="wish-box">
+            <label>Let us know who you are</label><br />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            /> <br /><br />
+            <label>Share your warmest wishes and any special message</label><br />
+            <textarea
+              type="text"
+              value={newWish}
+              onChange={(e) => setNewWish(e.target.value)}
+              required
+              style={{ height: "200px" }}
+            /><br /><br />
+            <label>Upload a favorite photo of you with Tanu!</label><br />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handlePhotoChange}
+            /><br /><br />
+            <button onClick={handleWishSubmit}>Submit Wish</button>
+          </div>
         </div>
       ) : (
         <div>
-          <WishesInALoop wishes={wishes} />
+          {!isPasswordCorrect ? (
+            <form onSubmit={handlePasswordSubmit}>
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder="Enter password"
+                style={{ width: "300px" }}
+              /><br /><br />
+              <button type="submit">Submit</button>
+            </form>
+          ) : (
+            <WishesInCollage wishes={wishes} />
+          )}
         </div>
       )}
     </div>

@@ -1,36 +1,47 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #b9dbf8;
+  background-color: #000000 !important;
   margin: 0;
-  padding: 0;
+  padding: 2% 10%;
+  color: white !important;
+  justify-content: center !important;
+  justify-items: center !important;
+  /* justify-self: center; */
 }
 
 h1 {
   font-family: "Playwrite AU SA", serif;
   font-size: 3rem;
   text-align: center;
+  color: rgb(252, 221, 221);
 }
 
 h2 {
   font-family: "Playwrite AU SA", serif;
-  font-size: 2rem;
-  color: #8b5e3c; /* More prominent and pleasant tone */
+  font-size: 1rem !important;
+  color: #d47070 !important;
   font-weight: normal;
   background-color: #fff;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  align-self: center !important;
 }
 
-input {
+h3 {
+  font-size: 1.2rem !important;
+}
+
+input,
+textarea {
   padding: 12px;
-  background-color: #0057b3;
+  background-color: #0057b3bb;
   border: 2px solid #b9dbf8;
-  border-radius: 5px;
+  border-radius: 5px !important;
   margin: 10px;
   width: 80%;
-  max-width: 400px;
+  min-width: 180px;
   font-size: 1rem;
+  font-family: serif;
 }
 
 .App {
@@ -44,14 +55,15 @@ button {
   background-color: #d59898;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 5px !important;
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: "Playwrite AU SA", serif;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #d47070;
   transform: scale(1.05);
 }
 
@@ -60,90 +72,101 @@ button:focus {
   box-shadow: 0 0 3px 3px rgba(0, 87, 179, 0.5);
 }
 
-/* Container for the entire component */
-.wish-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 20px;
-  padding: 30px;
+label {
+  font-family: "Playwrite AU SA", serif;
+  font-size: smaller;
 }
 
-/* The white circular cornered box that holds the wish */
-.wish-box {
-  background-color: white;
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  position: relative;
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255,255,255,0.0);
+  border-radius: 5px;
+  z-index: -1;
 }
 
-/* Styling for the wish text (centered) */
-.wish-text {
-  font-size: 18px;
-  margin-bottom: 20px;
-  line-height: 1.6;
-  font-family: 'Arial', sans-serif;
-  color: #333;
+@keyframes twinkle {
+  0% {
+    transform: scale(1, 1);
+    background: rgba(255,255,255,0.0);
+    animation-timing-function: ease-in;
+  }
+  60% {
+    transform: scale(0.8, 0.8);
+    background: rgba(255,255,255,1);
+    animation-timing-function: ease-out;
+  }
+  80% {
+    background: rgba(255,255,255,0.00);
+    transform: scale(1, 1);
+  }
+  100% {
+    background: rgba(255,255,255,0.0);
+    transform: scale(1, 1);
+  }
 }
 
-/* Styling for the photo (if present), positioned at the bottom */
+.collage-container {
+  width: 100%; /* Ensure it fills the container's width */
+}
+
+.collage-item {
+  background-color: rgb(251, 249, 248);  
+  border-radius: 10px !important; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for each item */
+  overflow: hidden; /* Prevent content from overflowing */
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 3% 7%;
+  margin: 50px;
+}
+
 .wish-photo {
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-top: 15px;
+  max-width: 400px; /* Limit the size of the image */
+  height: auto;
+  border-radius: 5px; /* Rounded corners for images */
+  margin-left: 20px; /* Space between text and image */
 }
 
-/* Styling for the name (bottom right of the box) */
 .wish-name {
-  float: right;
-  font-size: 14px;
-  color: #555;
+  font-style: italic;
+  /* float: right; */
+  color: #555; /* Darker text for the name */
+  margin-top: 10px;
 }
 
-/* Buttons for navigating between wishes */
-.navigation-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;  
+.wish-text {
+  font-size: 1rem;
+  color: #333; /* Darker text color for wish */
+  margin-bottom: 10px;
+  text-align: center; /* Center-align text */
 }
 
-.navigation-buttons button {
-  width: 40px;
-  padding: 10px;
-  border-radius: 100%;
+.form-container {
+  background-color: white;
+  color: black;
+  width: 100%;
+  min-width: 400px;
+  border-radius: 40px;
+  padding: 40px;
 }
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
+/* Add fade in/out CSS */
+.fade-enter {
+  opacity: 0;
+}
 
-  input {
-    width: 90%;
-  }
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
 
-  .wish-container {
-    padding: 15px;
-  }
+.fade-exit {
+  opacity: 1;
+}
 
-  .wish-box {
-    padding: 15px;
-  }
-
-  .navigation-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .navigation-buttons button {
-    width: 100%;
-    margin-bottom: 10px;
-  }
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
 }
