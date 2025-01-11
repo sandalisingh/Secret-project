@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Secret-project/static/css/main.f38276b9.css",
-    "main.js": "/Secret-project/static/js/main.785754cd.js",
-    "static/js/952.752e13e3.chunk.js": "/Secret-project/static/js/952.752e13e3.chunk.js",
+    "main.css": "/Secret-project/static/css/main.960f9715.css",
+    "main.js": "/Secret-project/static/js/main.8460849d.js",
+    "static/js/198.ef588579.chunk.js": "/Secret-project/static/js/198.ef588579.chunk.js",
     "index.html": "/Secret-project/index.html",
-    "main.f38276b9.css.map": "/Secret-project/static/css/main.f38276b9.css.map",
-    "main.785754cd.js.map": "/Secret-project/static/js/main.785754cd.js.map",
-    "952.752e13e3.chunk.js.map": "/Secret-project/static/js/952.752e13e3.chunk.js.map"
+    "main.960f9715.css.map": "/Secret-project/static/css/main.960f9715.css.map",
+    "main.8460849d.js.map": "/Secret-project/static/js/main.8460849d.js.map",
+    "198.ef588579.chunk.js.map": "/Secret-project/static/js/198.ef588579.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f38276b9.css",
-    "static/js/main.785754cd.js"
+    "static/css/main.960f9715.css",
+    "static/js/main.8460849d.js"
   ]
 }
