@@ -5,12 +5,13 @@ import './App.css';
 const App = () => {
   const [wishes, setWishes] = useState([]);
   const [newWish, setNewWish] = useState('');
+  const [name, setName] = useState('');
   const [isPortalOpen, setIsPortalOpen] = useState(true);
   const [timer, setTimer] = useState('');
 
   // Countdown logic
   useEffect(() => {
-    const birthday = new Date('2025-01-15T00:00:00'); // Replace with actual birthday
+    const birthday = new Date('2025-01-18T00:00:00'); // Replace with actual birthday
     const interval = setInterval(() => {
       const now = new Date();
       const timeLeft = birthday - now;
@@ -29,8 +30,11 @@ const App = () => {
   }, []);
 
   const handleWishSubmit = () => {
-    setWishes([...wishes, newWish]);
-    setNewWish('');
+    if (name && newWish) {
+      setWishes([...wishes, { name, wish: newWish }]);
+      setNewWish('');
+      setName('');
+    }
   };
 
   return (
@@ -39,6 +43,12 @@ const App = () => {
       {isPortalOpen ? (
         <div>
           <p>Time left to submit wishes: {timer}</p>
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <input
             type="text"
             placeholder="Write your wish here"
@@ -52,7 +62,7 @@ const App = () => {
           <h2>Happy Birthday!</h2>
           <ul>
             {wishes.map((wish, index) => (
-              <li key={index}>{wish}</li>
+              <li key={index}><strong>{wish.name}:</strong> {wish.wish}</li>
             ))}
           </ul>
         </div>
