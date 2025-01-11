@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sandalisingh.github.io/Secret-project",
   "dependencies": {
     "cra-template": "1.2.0",
     "react": "^19.0.0",
@@ -16,7 +17,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://sandalisingh.github.io/Secret-project",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -34,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
