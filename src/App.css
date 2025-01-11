@@ -1,8 +1,32 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
+  background-color: #b9dbf8;
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-family: "Playwrite AU SA", serif;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 5rem;
+  color: burlywood;
+  font-weight: lighter;
+}
+
+h4 {
+  font-weight: bolder;
+}
+
+input {
+  padding: 10px;
+  background-color: #0057b366;
+  border-color: #b9dbf8;
+  border-style: none;
+  margin: 10px;
+  width: 500px;
 }
 
 .App {
@@ -13,7 +37,7 @@ body {
 button {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #d59898;
   color: white;
   border: none;
   border-radius: 5px;
