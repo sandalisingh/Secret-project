@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { createClient } from '@supabase/supabase-js';
+import WishesInALoop from './WishesInALoop';
 
 const supabaseUrl = 'https://pxbhnbgbovyzhrxlyvng.supabase.co'; // Add your Supabase URL here
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4YmhuYmdib3Z5emhyeGx5dm5nIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNjYwNDYwMSwiZXhwIjoyMDUyMTgwNjAxfQ.kPQ4f8lfjoIplUq3OKQSrPclbzR4CSBcgrDbTdc2RNM'; // Add your Supabase API Key here
@@ -16,31 +17,31 @@ const App = () => {
 
   // Countdown logic
   useEffect(() => {
-      const birthday = new Date('2025-01-18T00:00:00'); // Set the birthday date
-      const interval = setInterval(() => {
-        const now = new Date();
-        const timeLeft = birthday - now; // Calculate the time left in milliseconds
+    const birthday = new Date('2025-01-18T00:00:00'); // Set the birthday date
+    const interval = setInterval(() => {
+      const now = new Date();
+      const timeLeft = birthday - now; // Calculate the time left in milliseconds
 
-        if (timeLeft <= 0) {
-          clearInterval(interval);
-          setIsPortalOpen(false); // Close portal when the birthday is reached
-        } else {
-          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)); // Calculate the days
-          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Calculate the hours
-          const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); // Calculate the minutes
-          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000); // Calculate the seconds
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        setIsPortalOpen(false); // Close portal when the birthday is reached
+      } else {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)); // Calculate the days
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Calculate the hours
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); // Calculate the minutes
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000); // Calculate the seconds
 
-          // Pad each value to ensure two digits
-          const paddedDays = String(days).padStart(2, '0');
-          const paddedHours = String(hours).padStart(2, '0');
-          const paddedMinutes = String(minutes).padStart(2, '0');
-          const paddedSeconds = String(seconds).padStart(2, '0');
+        // Pad each value to ensure two digits
+        const paddedDays = String(days).padStart(2, '0');
+        const paddedHours = String(hours).padStart(2, '0');
+        const paddedMinutes = String(minutes).padStart(2, '0');
+        const paddedSeconds = String(seconds).padStart(2, '0');
 
-          // Update the timer state with two-digit format
-          setTimer(`${paddedDays} : ${paddedHours} : ${paddedMinutes} : ${paddedSeconds}`);
-        }
+        // Update the timer state with two-digit format
+        setTimer(`${paddedDays} : ${paddedHours} : ${paddedMinutes} : ${paddedSeconds}`);
+      }
     }, 1000); // Update every second
-    
+
     return () => clearInterval(interval); // Clean up the interval on component unmount
   }, []);
 
@@ -69,19 +70,23 @@ const App = () => {
         photoUrl = await uploadPhoto(photo);
       }
 
+      let sendData = { name: name, wish: newWish, photo_url: photoUrl };
+
       // Store the wish in the Supabase database
       const { data, error } = await supabase
         .from('Secret-Project')
-        .insert([
-          { name: name, wish: newWish, photo_url: photoUrl },
-        ]);
+        .insert(sendData);
+
+      console.log('Supabase insert data:', sendData);
+      console.log('Supabase insert response:', data);
+
       if (error) {
         console.error('Error submitting wish:', error);
       } else {
         // Refresh the wish list
-        setWishes([...wishes, ...data]);
+        setWishes([...wishes, sendData]);
       }
-      
+
       // Reset form
       setNewWish('');
       setName('');
@@ -95,67 +100,73 @@ const App = () => {
 
   // Upload photo to Supabase Storage and get the public URL
   const uploadPhoto = async (file) => {
+    // Create a unique file name using the current timestamp
     const fileName = `${Date.now()}-${file.name}`;
+
+    // Upload the file to Supabase Storage
     const { data, error } = await supabase.storage
-      .from('photos') // 'photos' is the name of the Supabase storage bucket
+      .from('photos') // 'photos' is the name of your Supabase storage bucket
       .upload(fileName, file);
-    
+
+    // Log the response and error
+    console.log("Supabase upload response:", data);
+    console.log("Supabase upload error:", error);
+
     if (error) {
       console.error('Error uploading photo:', error);
-      return '';
+      return ''; // Return an empty string if there is an error
     }
 
-    // Get the public URL of the uploaded photo
-    const { publicURL, error: urlError } = supabase
-      .storage
-      .from('photos')
-      .getPublicUrl(data.path);
-    
-    if (urlError) {
-      console.error('Error getting public URL:', urlError);
-      return '';
-    }
-
-    return publicURL;
+    return ("https://pxbhnbgbovyzhrxlyvng.supabase.co/storage/v1/object/public/photos/" + data.path)
   };
+
 
   return (
     <div className="App">
-      <h1>Birthday wishes</h1>
+      {!isPortalOpen ? <h1>Birthday wishes</h1> :
+        <h1>Happy birthday tanuuuu!</h1>
+      }
+
       <h2>{timer}</h2>
-      {isPortalOpen ? (
+      {!isPortalOpen ? <h5>until the big day!</h5> :
+        null
+      }
+
+      {!isPortalOpen ? <h5>{wishes.length} wishes and counting!</h5> :
+        <h5>You have {wishes.length} wishes !</h5>
+      }
+
+      {!isPortalOpen ?
+        <p>Gathering heartfelt wishes, special messages, and fun photos to make Tanu's birthday unforgettable! 💌</p>
+        : null}
+
+      {!isPortalOpen ? (
         <div>
+          <label>Let us know who you are</label><br />
           <input
             type="text"
-            placeholder="Your Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-          /> <br/>
+          /> <br />
+          <label>Share your warmest wishes and any special message for Tanu</label><br />
           <input
             type="text"
-            placeholder="Write your wish here"
             value={newWish}
             onChange={(e) => setNewWish(e.target.value)}
             required
-          /><br/>
+          /><br />
+          <label>Upload a favorite photo of you with Tanu, or something that reminds you of them!</label><br />
           <input
             type="file"
             accept="image/*"
             onChange={handlePhotoChange}
-          /><br/>
+          /><br />
           <button onClick={handleWishSubmit}>Submit Wish</button>
         </div>
       ) : (
         <div>
-          <ul>
-            {wishes.map((wish, index) => (
-              <li key={index}>
-                <strong>{wish.name}:</strong> {wish.wish} 
-                {wish.photoUrl && <img src={wish.photoUrl} alt={"Wish_photo_"+index} style={{ width: '100px', height: '100px' }} />}
-              </li>            
-            ))}
-          </ul>
+          <WishesInALoop wishes={wishes} />
         </div>
       )}
     </div>

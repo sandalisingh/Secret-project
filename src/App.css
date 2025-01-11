@@ -8,23 +8,29 @@ body {
 h1 {
   font-family: "Playwrite AU SA", serif;
   font-size: 3rem;
+  text-align: center;
 }
 
 h2 {
   font-family: "Playwrite AU SA", serif;
-  font-size: 3rem;
-  color: burlywood;
-  font-weight: lighter;
-  background-color: white;
+  font-size: 2rem;
+  color: #8b5e3c; /* More prominent and pleasant tone */
+  font-weight: normal;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 input {
-  padding: 10px;
-  background-color: #0057b366;
-  border-color: #b9dbf8;
-  border-style: none;
+  padding: 12px;
+  background-color: #0057b3;
+  border: 2px solid #b9dbf8;
+  border-radius: 5px;
   margin: 10px;
-  width: 400px;
+  width: 80%;
+  max-width: 400px;
+  font-size: 1rem;
 }
 
 .App {
@@ -33,19 +39,111 @@ input {
 }
 
 button {
-  margin-top: 10px;
-  padding: 10px 20px;
+  margin-top: 15px;
+  padding: 12px 25px;
   background-color: #d59898;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
-/* button :hover, :active{
-  color: #9789ef;
-} */
 
 button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 3px 3px rgba(0, 87, 179, 0.5);
+}
+
+/* Container for the entire component */
+.wish-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  padding: 30px;
+}
+
+/* The white circular cornered box that holds the wish */
+.wish-box {
+  background-color: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  position: relative;
+}
+
+/* Styling for the wish text (centered) */
+.wish-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Styling for the photo (if present), positioned at the bottom */
+.wish-photo {
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+/* Styling for the name (bottom right of the box) */
+.wish-name {
+  float: right;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Buttons for navigating between wishes */
+.navigation-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;  
+}
+
+.navigation-buttons button {
+  width: 40px;
+  padding: 10px;
+  border-radius: 100%;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  input {
+    width: 90%;
+  }
+
+  .wish-container {
+    padding: 15px;
+  }
+
+  .wish-box {
+    padding: 15px;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navigation-buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

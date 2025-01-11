@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Secret-project/static/css/main.0b0ddda9.css",
-    "main.js": "/Secret-project/static/js/main.4ed0188b.js",
+    "main.js": "/Secret-project/static/js/main.138c0c3d.js",
     "static/js/952.752e13e3.chunk.js": "/Secret-project/static/js/952.752e13e3.chunk.js",
     "index.html": "/Secret-project/index.html",
     "main.0b0ddda9.css.map": "/Secret-project/static/css/main.0b0ddda9.css.map",
-    "main.4ed0188b.js.map": "/Secret-project/static/js/main.4ed0188b.js.map",
+    "main.138c0c3d.js.map": "/Secret-project/static/js/main.138c0c3d.js.map",
     "952.752e13e3.chunk.js.map": "/Secret-project/static/js/952.752e13e3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0b0ddda9.css",
-    "static/js/main.4ed0188b.js"
+    "static/js/main.138c0c3d.js"
   ]
 }
