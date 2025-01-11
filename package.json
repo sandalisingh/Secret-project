@@ -6,7 +6,6 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.47.12",
     "cra-template": "1.2.0",
-    "firebase": "^11.1.0",
     "gh-pages": "^3.2.3",
     "js-yaml": "^4.1.0",
     "react": "^19.0.0",

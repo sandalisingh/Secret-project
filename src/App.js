@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
 import './App.css';
 import { createClient } from '@supabase/supabase-js';
 
@@ -153,7 +152,7 @@ const App = () => {
             {wishes.map((wish, index) => (
               <li key={index}>
                 <strong>{wish.name}:</strong> {wish.wish} 
-                {wish.photoUrl && <img src={wish.photoUrl} alt="Wish photo" style={{ width: '100px', height: '100px' }} />}
+                {wish.photoUrl && <img src={wish.photoUrl} alt={"Wish_photo_"+index} style={{ width: '100px', height: '100px' }} />}
               </li>            
             ))}
           </ul>
