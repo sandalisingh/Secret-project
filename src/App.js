@@ -11,7 +11,7 @@ const App = () => {
   const [password, setPassword] = useState('');
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
 
-  const correctPassword = 'TanAnan#9363#'; // Replace with the desired password
+  const correctPassword = '*v*p*s*1*2*3*'; // Replace with the desired password
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -35,7 +35,7 @@ const App = () => {
 
   // Countdown logic
   useEffect(() => {
-    const birthday = new Date('2025-01-18T00:00:00'); // Set the birthday date
+    const birthday = new Date('2025-01-28T00:00:00'); // Set the birthday date
     const interval = setInterval(() => {
       const now = new Date();
       const timeLeft = birthday - now; // Calculate the time left in milliseconds
@@ -145,17 +145,17 @@ const App = () => {
         <small style={{fontSize:"0.7rem"}}>until the big day!</small>
         </h2><br/>
 
-      {isPortalOpen ? <h1>Birthday wishes</h1> :
-        <h1>Happy birthday tanuuuu!</h1>
+      {!isPortalOpen ? <h1>Birthday wishes</h1> :
+        <h1>Happy birthday vijayyyy!</h1>
       }
       <br />
-      {isPortalOpen ? <h5>{wishes.length} wishes and counting! <br /><br /></h5> :
+      {!isPortalOpen ? <h5>{wishes.length} wishes and counting! <br /><br /></h5> :
         <h5>You have {wishes.length} wishes !<br /><br /></h5>
       }
 
-      {isPortalOpen ? (
+      {!isPortalOpen ? (
         <div className="form-container">
-          <h3>Gathering heartfelt wishes, special messages, and fun photos to make Tanu's birthday unforgettable! 💌</h3>
+          <h3>Gathering heartfelt wishes, special messages, and fun photos to make Vijay's birthday unforgettable! 💌</h3>
           <br />
           <div className="wish-box">
             <label>Let us know who you are</label><br />
@@ -173,7 +173,7 @@ const App = () => {
               required
               style={{ height: "200px" }}
             /><br /><br />
-            <label>Upload a favorite photo of you with Tanu!</label><br />
+            <label>Upload a favorite photo of you with Vijay!</label><br />
             <input
               type="file"
               accept="image/*"
