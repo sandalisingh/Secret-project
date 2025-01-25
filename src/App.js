@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { createClient } from '@supabase/supabase-js';
 import WishesInCollage from './WishesInCollage';
+import papaPhoto from "./assets/papa.jpeg";
 
 const supabaseUrl = 'https://pxbhnbgbovyzhrxlyvng.supabase.co'; // Add your Supabase URL here
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4YmhuYmdib3Z5emhyeGx5dm5nIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNjYwNDYwMSwiZXhwIjoyMDUyMTgwNjAxfQ.kPQ4f8lfjoIplUq3OKQSrPclbzR4CSBcgrDbTdc2RNM'; // Add your Supabase API Key here
@@ -141,22 +142,27 @@ const App = () => {
 
   return (
     <div className="App">
-      <h2>{timer}<br/>
-        <small style={{fontSize:"0.7rem"}}>until the big day!</small>
-        </h2><br/>
+      <h2>{timer}<br />
+        <small style={{ fontSize: "0.7rem" }}>until the big day!</small>
+      </h2><br />
 
-      {!isPortalOpen ? <h1>Birthday wishes</h1> :
+      {isPortalOpen ? <h1>Collecting birthday wishes !</h1> :
         <h1>Happy birthday vijayyyy!</h1>
       }
+      <img
+            src={papaPhoto}
+            alt="Vijay"
+            className='Photo'
+          />
       <br />
-      {!isPortalOpen ? <h5>{wishes.length} wishes and counting! <br /><br /></h5> :
+      {isPortalOpen ? <div><h3>Let’s make Vijay’s birthday on 28th January unforgettable!<br /> Share your heartfelt wishes, fun photos, and special messages to celebrate. 💌</h3>
+      <br/><br/>
+      <h5>{wishes.length} wishes and counting! <br /><br /></h5></div> :
         <h5>You have {wishes.length} wishes !<br /><br /></h5>
       }
 
-      {!isPortalOpen ? (
+      {isPortalOpen ? (
         <div className="form-container">
-          <h3>Gathering heartfelt wishes, special messages, and fun photos to make Vijay's birthday unforgettable! 💌</h3>
-          <br />
           <div className="wish-box">
             <label>Let us know who you are</label><br />
             <input
