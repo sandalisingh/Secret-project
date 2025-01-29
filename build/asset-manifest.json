@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Secret-project/static/css/main.d43fcff0.css",
-    "main.js": "/Secret-project/static/js/main.43e1ce56.js",
+    "main.css": "/Secret-project/static/css/main.4628efa0.css",
+    "main.js": "/Secret-project/static/js/main.40b22a3f.js",
     "static/js/198.ef588579.chunk.js": "/Secret-project/static/js/198.ef588579.chunk.js",
     "static/media/papa.jpeg": "/Secret-project/static/media/papa.2f6ae8bbdc0d37063d75.jpeg",
     "index.html": "/Secret-project/index.html",
-    "main.d43fcff0.css.map": "/Secret-project/static/css/main.d43fcff0.css.map",
-    "main.43e1ce56.js.map": "/Secret-project/static/js/main.43e1ce56.js.map",
+    "main.4628efa0.css.map": "/Secret-project/static/css/main.4628efa0.css.map",
+    "main.40b22a3f.js.map": "/Secret-project/static/js/main.40b22a3f.js.map",
     "198.ef588579.chunk.js.map": "/Secret-project/static/js/198.ef588579.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d43fcff0.css",
-    "static/js/main.43e1ce56.js"
+    "static/css/main.4628efa0.css",
+    "static/js/main.40b22a3f.js"
   ]
 }

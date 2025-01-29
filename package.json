@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sandalisingh.github.io/Secret-project",
+  "homepage": "https://sandalisingh.github.io/Secret-project/",
   "dependencies": {
     "@supabase/supabase-js": "^2.47.12",
     "bootstrap": "^5.3.3",

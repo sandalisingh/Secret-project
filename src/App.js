@@ -36,7 +36,7 @@ const App = () => {
 
   // Countdown logic
   useEffect(() => {
-    const birthday = new Date('2025-01-28T00:00:00'); // Set the birthday date
+    const birthday = new Date('2025-01-28T20:00:00'); // Set the birthday date
     const interval = setInterval(() => {
       const now = new Date();
       const timeLeft = birthday - now; // Calculate the time left in milliseconds
